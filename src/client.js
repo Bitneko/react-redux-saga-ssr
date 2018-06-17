@@ -1,20 +1,22 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import {BrowserRouter as Router} from 'react-router-dom';
-import {Provider as ReduxProvider} from 'react-redux';
+import React from "react";
+import ReactDOM from "react-dom";
+import { Provider } from "react-redux";
+import { ConnectedRouter } from "connected-react-router";
+import sagas from "./redux/sagas";
 
-import Layout from './components/Layout';
-import createStore from './store';
+import Layout from "./components/Layout";
+import createStore from "./store";
 
-const store = createStore(window.REDUX_DATA);
+const {store, history} = createStore();
 
 const jsx = (
-    <ReduxProvider store={store}>
-        <Router>
-            <Layout/>
-        </Router>
-    </ReduxProvider>
+    <Provider store={ store }>
+        <ConnectedRouter history={ history }>
+            <Layout />
+        </ConnectedRouter>
+    </Provider>
 );
+store.runSaga(sagas);
 
-const app = document.getElementById('app');
-ReactDOM.hydrate(jsx, app);
+const app = document.getElementById( "app" );
+ReactDOM.hydrate( jsx, app );

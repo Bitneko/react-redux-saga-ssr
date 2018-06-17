@@ -1,4 +1,5 @@
-require('babel-register' )( {
+require('babel-register' )({
     presets: ['env'],
-} );
+});
+require("babel-polyfill");
 require('./src/server');

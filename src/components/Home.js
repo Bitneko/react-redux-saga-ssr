@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 const Home = () => (
     <h2>Homepage</h2>

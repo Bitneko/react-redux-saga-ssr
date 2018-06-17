@@ -20,7 +20,7 @@ module.exports = {
     context: path.join(__dirname, 'src'),
     devtool: dev ? 'none' : 'source-map',
     entry: {
-        app: './client.js',
+        app: ['babel-polyfill', './client.js'],
     },
     resolve: {
         modules: [

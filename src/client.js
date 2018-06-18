@@ -7,7 +7,7 @@ import sagas from "./redux/sagas";
 import Layout from "./components/Layout";
 import createStore from "./store";
 
-const {store, history} = createStore();
+const { store, history } = createStore();
 
 const jsx = (
     <Provider store={ store }>
@@ -16,7 +16,7 @@ const jsx = (
         </ConnectedRouter>
     </Provider>
 );
-store.runSaga(sagas);
+store.runSaga( sagas );
 
 const app = document.getElementById( "app" );
 ReactDOM.hydrate( jsx, app );

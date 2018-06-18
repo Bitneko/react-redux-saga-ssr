@@ -31,12 +31,12 @@ const reduxDevtools = windowDefined && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE
 
 const composeEnhancers = reduxDevtools || compose;
 
-export const createHistory = (url) =>
-    windowDefined ? createBrowserHistory() : createMemoryHistory({initialEntries: [url]});
+export const createHistory = ( url ) =>
+    ( windowDefined ? createBrowserHistory() : createMemoryHistory( { initialEntries: [ url ] } ) );
 
-export default ( url = '/' ) => {
-    const history = createHistory(url);
-    const initialState = windowDefined ? (window.REDUX_DATA || {}) : {};
+export default ( url = "/" ) => {
+    const history = createHistory( url );
+    const initialState = windowDefined ? ( window.REDUX_DATA || {} ) : {};
     const store = createStore(
         connectRouter( history )( reducer ),
         initialState,
@@ -48,6 +48,6 @@ export default ( url = '/' ) => {
 
     return {
         store,
-        history
+        history,
     };
 };

@@ -15,7 +15,7 @@ app.use( express.static( path.resolve( __dirname, "../dist" ) ) );
 
 app.get( "/*", ( req, res ) => {
     const context = {};
-    const {store} = createStore(req.url);
+    const { store } = createStore( req.url );
     store.dispatch( initialiseApp() );
 
     const jsx = (
@@ -24,10 +24,10 @@ app.get( "/*", ( req, res ) => {
                 <Layout />
             </StaticRouter>
         </Provider>
-    );  
+    );
 
-    if (context.url) {
-        res.redirect(context.url);
+    if ( context.url ) {
+        res.redirect( context.url );
         return;
     }
 
@@ -39,7 +39,10 @@ app.get( "/*", ( req, res ) => {
         res.end( htmlTemplate( reactDom, reduxState ) );
     } );
 
-    store.dispatch( fetchGists() );
+    if ( req.url === "/gists" ) {
+        store.dispatch( fetchGists() );
+    }
+
     store.close();
 } );
 

@@ -6,7 +6,7 @@
               "useBuiltIns": "usage"
           }
       ],
-      "react"
+      "react",
   ],
   "env": {
       "test": {

@@ -2,9 +2,14 @@ const dev = process.env.NODE_ENV !== 'production';
 const path = require('path');
 const {BundleAnalyzerPlugin} = require('webpack-bundle-analyzer');
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 const plugins = [
     new FriendlyErrorsWebpackPlugin(),
+    new MiniCssExtractPlugin({
+        filename: '[name].css',
+        chunkFilename: '[id].css'
+    })
 ];
 
 if (!dev) {
@@ -33,8 +38,35 @@ module.exports = {
             {
                 test: /\.jsx?$/,
                 exclude: /(node_modules|bower_components)/,
-                loader: 'babel-loader',
+                loader: 'babel-loader'
             },
+            {
+                test: /\.scss$/,
+                use: [
+                    MiniCssExtractPlugin.loader,
+                    'css-loader',
+                    'sass-loader'
+                ],
+                // test: /\.scss$/,
+                // use: ExtractTextPlugin.extract({
+                //     fallback: 'style-loader',
+                //     use: [
+                //         { loader: 'css-loader', 
+                //             options: {
+                //                 importLoaders: 1,
+                //                 modules: true,
+                //                 localIdentName: '[sha512:hash:base64:7]',
+                //                 sourceMap: true
+                //             }
+                //         },
+                //         { loader: 'sass-loader', options: {sourceMap: true} }
+                //     ]
+                // }),
+            },
+            {
+                test: /\.css$/,
+                use: ['style-loader', 'css-loader']
+            }
         ],
     },
     output: {

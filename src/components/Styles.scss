@@ -1,0 +1,14 @@
+@mixin red {
+  color: #990000;
+}
+
+.title-style {
+  @include red;
+  display: block;
+  padding: 20px;
+  border: 1px solid #ccc;
+}
+
+:global(#app) {
+  padding: 25px;
+}

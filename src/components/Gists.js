@@ -17,7 +17,7 @@ GistsList.propTypes = {
 
 export class GistsClass extends Component {
     componentWillMount() {
-        this.props.loadGists();
+        // this.props.loadGists();
     }
 
     render() {

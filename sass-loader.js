@@ -1,9 +1,10 @@
-const sass = require('node-sass');
+const sass = require( "node-sass" );
 
-module.exports = (data, file) => {
+module.exports = ( data, file ) => {
     try {
-        return sass.renderSync({data, file}).css.toString('utf8');
-    } catch (e) {
-        console.error(e);
+        return sass.renderSync( { data, file } ).css.toString( "utf8" );
+    } catch ( e ) {
+        console.error( e );
+        return null;
     }
 };

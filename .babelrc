@@ -7,10 +7,22 @@
           }
       ],
       "react",
+      "es2015",
+      "stage-1"
   ],
   "env": {
       "test": {
-          "presets": ["react"]
+          "presets": ["react", "es2016",  "stage-1"]
+      },
+      "server": {
+        "plugins": [
+            [
+              "css-modules-transform", {
+                  "extensions": [".scss"],
+                  "generateScopedName": "[sha512:hash:base64:7]"
+              }
+            ]
+        ]
       }
   }
 }
